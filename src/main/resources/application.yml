@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: cart-idle
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+    port: ${RABBIT_PORT:5672}
+    username: ${RABBIT_USERNAME:guest}
+    password: ${RABBIT_PASSWORD:guest}
+    listener:
+      simple:
+        retry:
+          enabled: true
+          max-attempts: 3
+          initial-interval: 300000
+          max-interval: 300000
+          multiplier: 1
+
+  data:
+    mongodb:
+      uri: mongodb
+      host: localhost
+      port: 27017
+      database: test
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: beans,env
+  endpoint:
+    health:
+      show-details: ALWAYS
+      
+      
+
+      
+      
